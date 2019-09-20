@@ -66,7 +66,7 @@ _release() {
     AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 
     _release_id
-    if [ -z "${RELEASE_ID}" ]; then
+    if [ ! -z "${RELEASE_ID}" ]; then
         echo "github releases delete ${RELEASE_ID}"
         URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}"
         curl \
