@@ -102,7 +102,7 @@ END
         exit 1
     fi
 
-    if [ ! -z ${RELEASE_PATH} ] && [ -d ${RELEASE_PATH} ]; then
+    if [ ! -z "${RELEASE_PATH}" ] && [ -d "${RELEASE_PATH}" ]; then
         _release_assets
     fi
 }
