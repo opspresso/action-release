@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set -e
+#!/bin/bash
 
 _release_pre() {
   if [ -z "${GITHUB_TOKEN}" ]; then
