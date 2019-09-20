@@ -39,10 +39,10 @@ _release_id() {
 
 _release_assets() {
     LIST=/tmp/release-list
-    ls ${RELEASE_PATH} | sort > ${LIST}
+    ls ${ASSET_PATH} | sort > ${LIST}
 
     while read FILENAME; do
-        FILEPATH=${RELEASE_PATH}/${FILENAME}
+        FILEPATH=${ASSET_PATH}/${FILENAME}
         FILETYPE=$(file -b --mime-type "${FILEPATH}")
         FILESIZE=$(stat -c%s "${FILEPATH}")
 
@@ -102,7 +102,7 @@ END
         exit 1
     fi
 
-    if [ ! -z "${RELEASE_PATH}" ] && [ -d "${RELEASE_PATH}" ]; then
+    if [ ! -z "${ASSET_PATH}" ] && [ -d "${ASSET_PATH}" ]; then
         _release_assets
     fi
 }

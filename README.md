@@ -29,4 +29,4 @@ NAME | The name of the release. | | No
 BODY | Text describing the contents of the tag. | | No
 DRAFT | `true` to create a draft (unpublished) release, `false` to create a published one. | false | No
 PRERELEASE | `true` to identify the release as a prerelease. `false` to identify the release as a full release. | false | No
-RELEASE_PATH | The path where the release asset files. | | No
+ASSET_PATH | The path where the release asset files. | | No
