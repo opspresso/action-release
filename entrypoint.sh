@@ -59,7 +59,7 @@ _release() {
 
     _release_id
     if [ "${RELEASE_ID}" != "" ]; then
-        _command "github releases delete ${RELEASE_ID}"
+        echo "github releases delete ${RELEASE_ID}"
         URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}"
         curl \
             -sSL \
@@ -68,7 +68,7 @@ _release() {
             ${URL}
     fi
 
-    _command "github releases create ${TAG_NAME} ${DRAFT} ${PRERELEASE}"
+    echo "github releases create ${TAG_NAME} ${DRAFT} ${PRERELEASE}"
     URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases"
     curl \
         -sSL \
