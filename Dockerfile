@@ -1,4 +1,4 @@
-FROM python:3.7-stretch
+FROM opspresso/awscli
 
 LABEL "com.github.actions.name"="Release to GitHub"
 LABEL "com.github.actions.description"="GitHub Release"
@@ -9,8 +9,6 @@ LABEL version=v0.0.6
 LABEL repository="https://github.com/opspresso/action-release"
 LABEL maintainer="Jungyoul Yu <me@nalbam.com>"
 LABEL homepage="https://opspresso.com/"
-
-RUN apt-get install -y curl jq
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
