@@ -34,6 +34,7 @@ fi
 _release_id() {
     URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases"
     RELEASE_ID=$(curl -s ${URL} | TAG_NAME=${TAG_NAME} jq -r '.[] | select(.tag_name == env.TAG_NAME) | .id' | xargs)
+    echo "RELEASE_ID: ${RELEASE_ID}"
 }
 
 _release_assets() {
@@ -65,7 +66,7 @@ _release() {
     AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 
     _release_id
-    if [ "${RELEASE_ID}" != "" ]; then
+    if [ -z "${RELEASE_ID}" ]; then
         echo "github releases delete ${RELEASE_ID}"
         URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}"
         curl \
@@ -73,6 +74,7 @@ _release() {
             -X DELETE \
             -H "${AUTH_HEADER}" \
             ${URL}
+        sleep 1
     fi
 
     echo "github releases create ${TAG_NAME} ${DRAFT} ${PRERELEASE}"
@@ -95,7 +97,7 @@ END
     sleep 1
 
     _release_id
-    if [ "${RELEASE_ID}" == "" ]; then
+    if [ -z "${RELEASE_ID}" ]; then
         echo "RELEASE_ID is not set."
         exit 1
     fi
