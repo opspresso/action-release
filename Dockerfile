@@ -5,7 +5,7 @@ LABEL "com.github.actions.description"="GitHub Release"
 LABEL "com.github.actions.icon"="tag"
 LABEL "com.github.actions.color"="blue"
 
-LABEL version=v0.0.6
+LABEL version=v0.0.7
 LABEL repository="https://github.com/opspresso/action-release"
 LABEL maintainer="Jungyoul Yu <me@nalbam.com>"
 LABEL homepage="https://opspresso.com/"
