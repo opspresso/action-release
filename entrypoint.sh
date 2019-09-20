@@ -1,9 +1,18 @@
 #!/bin/bash
 
+_error() {
+  echo -e "$1"
+
+  if [ ! -z "${LOOSE_ERROR}" ]; then
+    exit 0
+  else
+    exit 1
+  fi
+}
+
 _release_pre() {
   if [ -z "${GITHUB_TOKEN}" ]; then
-    echo "GITHUB_TOKEN is not set."
-    exit 1
+    _error "GITHUB_TOKEN is not set."
   fi
 
   if [ -z "${TAG_NAME}" ]; then
@@ -15,8 +24,7 @@ _release_pre() {
       TAG_NAME=$(cat ./VERSION | xargs)
     fi
     if [ -z "${TAG_NAME}" ]; then
-      echo "TAG_NAME is not set."
-      exit 1
+      _error "TAG_NAME is not set."
     fi
   fi
 
@@ -102,8 +110,7 @@ END
 
   _release_id
   if [ -z "${RELEASE_ID}" ]; then
-    echo "RELEASE_ID is not set."
-    exit 1
+    _error "RELEASE_ID is not set."
   fi
 
   if [ ! -z "${ASSET_PATH}" ] && [ -d "${ASSET_PATH}" ]; then
