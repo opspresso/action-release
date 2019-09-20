@@ -11,7 +11,7 @@ LABEL maintainer="Jungyoul Yu <me@nalbam.com>"
 LABEL homepage="https://opspresso.com/"
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl groff jq && \
+    apt-get install -y --no-install-recommends curl jq && \
     apt-get -y clean && apt-get -y autoclean && apt-get -y autoremove
 
 ADD entrypoint.sh /entrypoint.sh
