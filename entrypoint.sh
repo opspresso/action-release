@@ -2,34 +2,36 @@
 
 set -e
 
-if [ -z "${GITHUB_TOKEN}" ]; then
-  echo "GITHUB_TOKEN is not set."
-  exit 1
-fi
-
-if [ -z "${TAG_NAME}" ]; then
-  if [ -f ./target/TAG_NAME ]; then
-    TAG_NAME=$(cat ./target/TAG_NAME | xargs)
-  elif [ -f ./target/VERSION ]; then
-    TAG_NAME=$(cat ./target/VERSION | xargs)
-  fi
-  if [ -z "${TAG_NAME}" ]; then
-    echo "TAG_NAME is not set."
+_release_pre() {
+  if [ -z "${GITHUB_TOKEN}" ]; then
+    echo "GITHUB_TOKEN is not set."
     exit 1
   fi
-fi
 
-if [ -z "${TARGET_COMMITISH}" ]; then
-  TARGET_COMMITISH="master"
-fi
+  if [ -z "${TAG_NAME}" ]; then
+    if [ -f ./target/TAG_NAME ]; then
+      TAG_NAME=$(cat ./target/TAG_NAME | xargs)
+    elif [ -f ./target/VERSION ]; then
+      TAG_NAME=$(cat ./target/VERSION | xargs)
+    fi
+    if [ -z "${TAG_NAME}" ]; then
+      echo "TAG_NAME is not set."
+      exit 1
+    fi
+  fi
 
-if [ -z "${DRAFT}" ]; then
-  DRAFT="false"
-fi
+  if [ -z "${TARGET_COMMITISH}" ]; then
+    TARGET_COMMITISH="master"
+  fi
 
-if [ -z "${PRERELEASE}" ]; then
-  PRERELEASE="false"
-fi
+  if [ -z "${DRAFT}" ]; then
+    DRAFT="false"
+  fi
+
+  if [ -z "${PRERELEASE}" ]; then
+    PRERELEASE="false"
+  fi
+}
 
 _release_id() {
     URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases"
@@ -63,6 +65,8 @@ _release_assets() {
 }
 
 _release() {
+    _release_pre
+
     AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 
     _release_id
