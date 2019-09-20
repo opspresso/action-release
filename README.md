@@ -8,7 +8,7 @@ name: GitHub Release
 on: push
 
 jobs:
-  deploy:
+  release:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
