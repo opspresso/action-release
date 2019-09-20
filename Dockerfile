@@ -10,8 +10,7 @@ LABEL repository="https://github.com/opspresso/action-release"
 LABEL maintainer="Jungyoul Yu <me@nalbam.com>"
 LABEL homepage="https://opspresso.com/"
 
-RUN apt-get install -y curl jq && \
-    pip install --quiet --no-cache-dir awscli
+RUN apt-get install -y curl jq
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
