@@ -1,5 +1,7 @@
 # GitHub Release
 
+<a href="https://github.com/opspresso/action-release"><img alt="GitHub Actions status" src="https://github.com/opspresso/action-release/workflows/Build-Push/badge.svg"></a>
+
 ## Usage
 
 ```yaml
