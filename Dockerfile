@@ -10,9 +10,8 @@ LABEL repository="https://github.com/opspresso/action-release"
 LABEL maintainer="Jungyoul Yu <me@nalbam.com>"
 LABEL homepage="https://opspresso.com/"
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl jq && \
-    apt-get -y clean && apt-get -y autoclean && apt-get -y autoremove
+RUN apt-get install -y curl jq && \
+    pip install --quiet --no-cache-dir awscli
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
