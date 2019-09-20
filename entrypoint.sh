@@ -33,7 +33,7 @@ fi
 
 _release_id() {
     URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases"
-    RELEASE_ID=$(curl -s ${URL} | TAG_NAME=${TAG_NAME} jq '.[] | select(.tag_name == env.TAG_NAME) | .id')
+    RELEASE_ID=$(curl -s ${URL} | TAG_NAME=${TAG_NAME} jq -r '.[] | select(.tag_name == env.TAG_NAME) | .id' | xagrs)
 }
 
 _release_assets() {
