@@ -1,7 +1,7 @@
 FROM python:3.7-alpine
 
-LABEL "com.github.actions.name"="GitHub Release"
-LABEL "com.github.actions.description"="Release to GitHub"
+LABEL "com.github.actions.name"="Release to GitHub"
+LABEL "com.github.actions.description"="GitHub Release"
 LABEL "com.github.actions.icon"="tag"
 LABEL "com.github.actions.color"="blue"
 
