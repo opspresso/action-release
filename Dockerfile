@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7-stretch
 
 LABEL "com.github.actions.name"="GitHub Release"
 LABEL "com.github.actions.description"="Release to GitHub"
@@ -9,6 +9,10 @@ LABEL version=v0.0.1
 LABEL repository="https://github.com/opspresso/action-release"
 LABEL maintainer="Jungyoul Yu <me@nalbam.com>"
 LABEL homepage="https://opspresso.com/"
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl groff jq && \
+    apt-get -y clean && apt-get -y autoclean && apt-get -y autoremove
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

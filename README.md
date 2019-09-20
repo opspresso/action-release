@@ -22,7 +22,7 @@ jobs:
 
 Name | Description | Default | Required
 ---- | ----------- | ------- | --------
-GITHUB_TOKEN | The name of the tag. | | **Yes**
+GITHUB_TOKEN | Your GitHub Token. | | **Yes**
 TAG_NAME | The name of the tag. | | **Yes**
 TARGET_COMMITISH | Specifies the commitish value that determines where the Git tag is created from. | master | No
 NAME | The name of the release. | | No
