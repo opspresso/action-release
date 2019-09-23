@@ -1,4 +1,4 @@
-FROM opspresso/awscli
+FROM opspresso/builder:v0.6.4
 
 LABEL "com.github.actions.name"="Release to GitHub"
 LABEL "com.github.actions.description"="GitHub Release"
