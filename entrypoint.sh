@@ -3,7 +3,7 @@
 _error() {
   echo -e "$1"
 
-  if [ ! -z "${LOOSE_ERROR}" ]; then
+  if [ "${LOOSE_ERROR}" == "true" ]; then
     exit 0
   else
     exit 1
@@ -32,11 +32,11 @@ _release_pre() {
     TARGET_COMMITISH="master"
   fi
 
-  if [ -z "${DRAFT}" ]; then
+  if [ "${DRAFT}" != "true" ]; then
     DRAFT="false"
   fi
 
-  if [ -z "${PRERELEASE}" ]; then
+  if [ "${PRERELEASE}" != "true" ]; then
     PRERELEASE="false"
   fi
 }
