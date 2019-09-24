@@ -1,4 +1,4 @@
-FROM opspresso/builder:v0.6.5
+FROM opspresso/builder:v0.6.6
 
 LABEL "com.github.actions.name"="Release to GitHub"
 LABEL "com.github.actions.description"="GitHub Release"
