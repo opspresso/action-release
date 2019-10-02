@@ -1,5 +1,8 @@
 # GitHub Release
 
+[![GitHub Actions status](https://github.com/opspresso/action-release/workflows/Build-Push/badge.svg)](https://github.com/opspresso/action-release/actions)
+[![GitHub Releases](https://img.shields.io/github/release/opspresso/action-release.svg)](https://github.com/opspresso/action-release/releases)
+
 ## Usage
 
 ```yaml
