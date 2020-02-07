@@ -1,11 +1,11 @@
-name: 'Release to GitHub'
-description: 'GitHub Release'
-author: 'Jungyoul Yu <@nalbam>'
+name: "Release to GitHub"
+description: "GitHub Release"
+author: "Jungyoul Yu <@nalbam>"
 
 branding:
-  icon: 'tag'
-  color: 'blue'
+  icon: "tag"
+  color: "blue"
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
