@@ -55,6 +55,28 @@ _release_id() {
   echo "RELEASE_ID: ${RELEASE_ID}"
 }
 
+_release_check() {
+  REQ=${1:-3}
+  CNT=0
+  while [ 1 ]; do
+    sleep 3
+
+    _release_id
+
+    if [ ! -z "${RELEASE_ID}" ]; then
+      break
+    elif [ "x${CNT}" == "x${REQ}" ]; then
+      break
+    fi
+
+    CNT=$(( ${CNT} + 1 ))
+  done
+
+  if [ -z "${RELEASE_ID}" ]; then
+    _error "RELEASE_ID is not set."
+  fi
+}
+
 _release_assets() {
   LIST=/tmp/release-list
   ls ${ASSET_PATH} | sort > ${LIST}
@@ -114,12 +136,8 @@ _release() {
   "prerelease": ${PRERELEASE}
 }
 END
-  sleep 5
 
-  _release_id
-  if [ -z "${RELEASE_ID}" ]; then
-    _error "RELEASE_ID is not set."
-  fi
+  _release_check
 
   if [ ! -z "${ASSET_PATH}" ] && [ -d "${ASSET_PATH}" ]; then
     _release_assets
