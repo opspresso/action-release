@@ -15,6 +15,10 @@ _release_pre() {
     _error "GITHUB_TOKEN is not set."
   fi
 
+  if [ ! -z "${TAG_NAME}" ]; then
+    TAG_NAME=${TAG_NAME##*/}
+  fi
+
   if [ -z "${TAG_NAME}" ]; then
     if [ -f ./target/TAG_NAME ]; then
       TAG_NAME=$(cat ./target/TAG_NAME | xargs)
@@ -102,12 +106,12 @@ _release() {
     --data @- \
     ${URL} <<END
 {
- "tag_name": "${TAG_NAME}",
- "target_commitish": "${TARGET_COMMITISH}",
- "name": "${NAME}",
- "body": "${BODY}",
- "draft": ${DRAFT},
- "prerelease": ${PRERELEASE}
+  "tag_name": "${TAG_NAME}",
+  "target_commitish": "${TARGET_COMMITISH}",
+  "name": "${NAME}",
+  "body": "${BODY}",
+  "draft": ${DRAFT},
+  "prerelease": ${PRERELEASE}
 }
 END
   sleep 5
