@@ -37,7 +37,9 @@ _release_pre() {
   fi
 
   if [ -z "${TARGET_COMMITISH}" ]; then
-    TARGET_COMMITISH="master"
+    _result "GITHUB_REF: ${GITHUB_REF}"
+
+    TARGET_COMMITISH="$(echo ${GITHUB_REF} | cut -d'/' -f3)"
   fi
 
   if [ "${DRAFT}" != "true" ]; then
@@ -135,7 +137,7 @@ _release() {
     ${URL} <<END
 {
   "tag_name": "${TAG_NAME}",
-  "target_commitish": "${TARGET_COMMITISH}",
+  "target_commitish": "${TARGET_COMMITISH:-master}",
   "name": "${NAME}",
   "body": "${BODY}",
   "draft": ${DRAFT},

@@ -8,4 +8,4 @@ branding:
 
 runs:
   using: docker
-  image: docker://opspresso/action-release:v0.2.8
+  image: docker://opspresso/action-release:v0.2.9
